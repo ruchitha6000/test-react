@@ -1,0 +1,44 @@
+pipeline {
+    agent any   // Run on any available Jenkins agent/node
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo "Checking out code..."
+                git branch: 'main',
+                    url: 'https://github.com/your-username/your-react-repo.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                echo "Installing npm packages..."
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Building React production bundle..."
+                sh 'npm run build'
+            }
+        }
+
+        stage('Publish Artifact') {
+            steps {
+                echo "Archiving build folder..."
+                archiveArtifacts artifacts: 'build/**', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "React app pipeline completed successfully!"
+        }
+        failure {
+            echo "Pipeline failed. Please check the logs."
+        }
+    }
+}
