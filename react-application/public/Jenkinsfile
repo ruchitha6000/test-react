@@ -7,7 +7,7 @@ pipeline {
             steps {
                 echo "Checking out code..."
                 git branch: 'main',
-                    url: 'https://github.com/your-username/your-react-repo.git'
+                    url: 'https://github.com/ruchitha6000/test-react.git'
             }
         }
 
