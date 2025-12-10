@@ -28,7 +28,7 @@ pipeline {
         stage('Publish Artifact') {
             steps {
                 echo "Archiving build folder..."
-                archiveArtifacts artifacts: 'build/**', fingerprint: true
+                archiveArtifacts artifacts: 'dist/**', fingerprint: true
             }
         }
     }
